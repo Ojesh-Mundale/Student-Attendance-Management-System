@@ -1,0 +1,74 @@
+/* dashboard.css */
+
+body {
+    background-color: #e9ecef; /* Light grey background */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background for the form */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #007bff; /* Blue color for the heading */
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333; /* Dark grey for labels */
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #007bff; /* Blue border */
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    border-color: #f39c12; /* Orange border on focus */
+    outline: none; /* Remove default outline */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Blue background for button */
+    color: #ffffff; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #f39c12; /* Change to orange on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+.link-group {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.link-group a {
+    color: #007bff; /* Blue color for the link */
+    text-decoration: none;
+}
+
+.link-group a:hover {
+    text-decoration: underline; /* Underline link on hover */
+}

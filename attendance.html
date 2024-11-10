@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Marking</title>
+    <link rel="stylesheet" href="attendance.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .tab:hover {
+            background-color: #0056b3;
+        }
+
+        .tabcontent {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none; /* Hide by default */
+        }
+
+        .student-list {
+            margin-top: 20px;
+        }
+
+        .student-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .student-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .attendance-btn {
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .present {
+            background-color: #28a745; /* Green color for Present */
+            color: white;
+        }
+
+        .present:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        .absent {
+            background-color: #dc3545; /* Red color for Absent */
+            color: white;
+        }
+
+        .absent:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+
+        .add-student-btn {
+            background-color: #007BFF; /* Blue color for Add Student */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            animation: pulse 1s infinite; /* Animation effect */
+        }
+
+        .add-student-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .totals {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mark Attendance</h1>
+        
+        <div class="tabs">
+            <button class="tab" onclick="openTab(event, 'Semester')">Semester</button>
+            <button class="tab" onclick="openTab(event, 'Year')">Current Year</button>
+            <button class="tab" onclick="openTab(event, 'Course')">Course Name</button>
+        </div>
+
+        <div id="Semester" class="tabcontent">
+            <h2>Select Semester</h2>
+            <select>
+                <option value="1">Semester 1</option>
+                <option value="2">Semester 2</option>
+                <option value="3">Semester 3</option>
+                <option value="4">Semester 4</option>
+            </select>
+        </div>
+
+        <div id="Year" class="tabcontent">
+            <h2>Select Current Year</h2>
+            <select>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+            </select>
+        </div>
+
+        <div id="Course" class="tabcontent">
+            <h2>Select Course</h2>
+            <select>
+                <option value="cs">Computer Science</option>
+                <option value="ee">Electrical Engineering</option>
+                <option value="me">Mechanical Engineering</option>
+            </select>
+        </div>
+
+        <div class="student-list">
+            <h2>Student List</h2>
+            <ul id="studentList">
+                <li>
+                    <span>John Doe</span>
+                    <button class="attendance-btn present" onclick="toggleAttendance(this)">Present</button>
+                </li>
+                <!-- More students can be added here -->
+            </ul>
+        </div>
+
+        <button class="add-student-btn" onclick="addStudent()">Add Student</button>
+
+        <div class="totals">
+            <p>Total Present: <span id="totalPresent">0</span></p>
+            <p>Total Absent: <span id="totalAbsent">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        let presentCount = 0;
+        let absentCount = 0;
+
+        function toggleAttendance(button) {
+            const li = button.parentElement;
+            const isPresent = button.classList.contains('present');
+
+            if (isPresent) {
+                // Marking as Absent
+                button.classList.remove('present');
+                button.classList.add('absent');
+                button.innerText = 'Absent';
+                presentCount--; // Decrement present count
+                absentCount++; // Increment absent count
+            } else {
+                // Marking as Present
+                button.classList.remove('absent');
+                button.classList.add('present');
+                button.innerText = 'Present';
+                presentCount++; // Increment present count
+                absentCount--; // Decrement absent count
+            }
+
+            // Prevent negative counts
+            if (presentCount < 0) presentCount = 0;
+            if (absentCount < 0) absentCount = 0;
+
+            updateTotals();
+        }
+
+        function updateTotals() {
+            document.getElementById('totalPresent').innerText = presentCount;
+            document.getElementById('totalAbsent').innerText = absentCount;
+        }
+
+        function addStudent() {
+            const studentName = prompt("Enter the student's name:");
+            if (studentName) {
+                const studentList = document.getElementById('studentList');
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${studentName}</span>
+                                <button class="attendance-btn present" onclick="toggleAttendance(this)">Present</button>`;
+                studentList.appendChild(li);
+            }
+        }
+
+        function openTab(evt, tabName) {
+            const tabcontent = document.getElementsByClassName("tabcontent");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";  
+            }
+            document.getElementById(tabName).style.display = "block";  
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Attendance System - Login</title>
+    <link rel="stylesheet" href="staff_login.css">
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Simulate a successful login (you would replace this with actual login logic)
+            const username = document.getElementById('staffUsername').value;
+            const password = document.getElementById('staffPassword').value;
+
+            // For demonstration, let's assume the login is always successful
+            // In a real application, you would send a request to the server to validate credentials
+            if (username && password) {
+                // Redirect to the attendance page
+                window.location.href = 'attendance.html'; // Change this to 'attendance.php' if using PHP
+            } else {
+                alert('Please enter both username and password.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Staff Login</h1>
+        <form onsubmit="handleLogin(event)"> <!-- Use JavaScript to handle the form submission -->
+            <div class="input-group">
+                <label for="staffUsername">Username</label>
+                <input type="text" id="staffUsername" name="staffUsername" required>
+            </div>
+            <div class="input-group">
+                <label for="staffPassword">Password</label>
+                <input type="password" id="staffPassword" name="staffPassword" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>

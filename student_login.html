@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance System - Login</title>
+    <link rel="stylesheet" href="student_login.css"> <!-- Link to your CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Student Login</h1>
+        <form id="loginForm" action="#" method="POST">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="link-group">
+            <p>Staff? <a href="staff_login.html">Login here</a></p> <!-- Link to staff login page -->
+        </div>
+    </div>
+    <script src="student_login.js"></script> <!-- Link to your JavaScript file -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Simulate login validation (replace with actual validation logic)
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Example of simple validation (replace with actual authentication)
+            if (username === "student" && password === "password") {
+                // Redirect to the student dashboard
+                window.location.href = "student_dashboard.html"; // Change to your dashboard URL
+            } else {
+                alert("Invalid username or password!");
+            }
+        });
+    </script>
+</body>
+</html>
