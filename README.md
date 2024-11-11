@@ -23,8 +23,11 @@ It also allows Student to check their attendance.
 
 ## Project Images
 
-
-
+![Create_Ac_Page](Create_Ac.png)
+![Student_Login Page](Student_Login.png)
+![Staff_Login Page](Staff_Login.png)
+![Dashboard](Student_Dashboard.png)
+![Attendance Page](Attendance.png)
 
 ## Getting Started
 
